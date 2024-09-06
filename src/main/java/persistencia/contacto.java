@@ -10,14 +10,15 @@ package persistencia;
  */
 public class contacto {
     
-    private String nombre, correo;
+    private String nombre, correo, numero;
     
     public contacto(){
     }
 
-    public contacto(String nombre, String correo) {
+    public contacto(String nombre, String correo, String numero) {
         this.nombre = nombre;
         this.correo = correo;
+        this.numero = numero;
     }
 
     public String getNombre() {
@@ -36,8 +37,18 @@ public class contacto {
         this.correo = correo;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     @Override
     public String toString() {
-        return "Nombre del contacto: "+nombre+ " Correo: "+correo;
+        return "nombre=" + nombre + ", correo=" + correo + ", numero=" + numero;
     }
+
+    
 }
