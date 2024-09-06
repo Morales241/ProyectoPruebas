@@ -10,10 +10,22 @@ import java.util.List;
  */
 public class agendaContactos {
 
+    protected static agendaContactos instance;
+
     private final List<contacto> Contactos;
 
     public agendaContactos() {
+
         Contactos = new ArrayList<>();
+    }
+
+    public static agendaContactos getInstance() {
+
+        if (instance == null) {
+            return instance = new agendaContactos();
+        } 
+        return instance;
+
     }
 
     public List<contacto> getContactos() {

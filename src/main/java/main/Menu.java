@@ -8,11 +8,10 @@ import persistencia.agendaContactos;
  * @author tacot
  */
 public class Menu {
-
+    static Scanner tec = new Scanner(System.in);
+    static agendaContactos ag = new agendaContactos();
+    
     public static void main(String[] args) {
-        Scanner tec = new Scanner(System.in);
-        
-        agendaContactos ag = new agendaContactos();
         
         int opcion;
 
@@ -47,6 +46,24 @@ public class Menu {
                     System.out.println("Opción no válida");
             }
         } while (opcion != 0);
+    }
+    
+    public void agregarContacto(){
+        try{
+        String nombre, correo;
+        
+        System.out.println("Ingrese el nombre del nuevo contacto");
+        
+        nombre = tec.nextLine();
+        
+        System.out.println("Ingrese el correo del nuevo contacto");
+        
+        correo = tec.nextLine();
+        
+        
+        }catch(Exception ex){
+            System.out.println("Algo salió mal: "+ex.getMessage());
+        }
     }
 
 }
