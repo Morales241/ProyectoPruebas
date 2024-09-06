@@ -1,7 +1,9 @@
 package negocio;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import persistencia.agendaContactos;
+import persistencia.contacto;
+import validador.Validadores;
 
 /**
  *
@@ -9,29 +11,61 @@ import java.util.regex.Pattern;
  */
 public class negocio {
     
+    
     public void agregarContacto(String nombre, String correo, String telefono) throws Exception{
          
         
-        Pattern patternNombre = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$");
-        Matcher matcherNombre = patternNombre.matcher(nombre);
-
-        Pattern patternCorreo = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
-        Matcher matcherCorreo = patternCorreo.matcher(correo);
         
-        Pattern patternTelefono = Pattern.compile("^\\d{10}$");
-        Matcher matcherTelefono = patternTelefono.matcher(telefono);
         
-        if (!matcherNombre.matches()) {
+        if (!Validadores.getInstance().validarNombre(nombre)) {
             
             throw new Exception("El nombre de ");
             
-        }else if (!matcherCorreo.matches()) {
+        }else if (!Validadores.getInstance().validarTelefono(telefono)) {
             
             
-        }else if (!matcherTelefono.matches()) {
+        }else if (!Validadores.getInstance().validarCorreo(correo)) {
             
             
         }
         
     }
+    
+    public void eliminarContacto(String telefono) throws Exception{
+        
+        
+        
+        
+        if (!Validadores.getInstance().validarTelefono(telefono)) {
+            throw  new Exception("El telefono no venia con el formato predeterminado");
+        }
+        agendaContactos.getInstance().eliminarContacto(telefono);
+        
+    }
+    
+    public void buscarNombre(String nombre) throws Exception{
+        
+        if (!Validadores.getInstance().validarNombre(nombre)) {
+            
+            throw new Exception("Este no es un nombre de contacto ");
+            
+        }
+        List<contacto> listaContactos = agendaContactos.getInstance().buscarContactos(nombre);
+        
+        for(contacto c: listaContactos){
+            System.out.println(c);
+        }
+    }
+    
+    public void buscarTelefono(String telefono) throws Exception{
+        
+        if (!Validadores.getInstance().validarTelefono(telefono)) {
+            throw new Exception("Este telefono no cumple con el formato");
+        }
+        List<contacto> listaContactos = agendaContactos.getInstance().buscarContactos(telefono);
+        
+        System.out.println(listaContactos.get(0));
+    }
+    
+    
 }

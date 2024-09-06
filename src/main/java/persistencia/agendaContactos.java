@@ -14,7 +14,7 @@ public class agendaContactos {
 
     private final List<contacto> Contactos;
 
-    public agendaContactos() {
+    private agendaContactos() {
 
         Contactos = new ArrayList<>();
     }
@@ -23,7 +23,7 @@ public class agendaContactos {
 
         if (instance == null) {
             return instance = new agendaContactos();
-        } 
+        }
         return instance;
 
     }
@@ -36,10 +36,21 @@ public class agendaContactos {
         this.Contactos.add(Contacto);
     }
 
-    public void eliminarContacto(contacto Contacto) {
+    public void eliminarContacto(String numero) throws Exception {
+
+        contacto contactoAEliminar = null;
 
         for (contacto Contacto1 : Contactos) {
+            if (Contacto1.getNumero().equalsIgnoreCase(numero)) {
+                contactoAEliminar = Contacto1;
+                break;
+            }
+        }
 
+        if (contactoAEliminar != null) {
+            Contactos.remove(contactoAEliminar);
+        } else {
+            throw new Exception("El telefono no fue encontrado en la lista");
         }
 
     }
@@ -48,7 +59,7 @@ public class agendaContactos {
         List<contacto> ContactosResultantes = new ArrayList<>();
 
         Contactos.forEach(contacto -> {
-            if (contacto.getCorreo().contains(cadena) || contacto.getNombre().contains(cadena)) {
+            if (contacto.getNumero().contains(cadena) || contacto.getNombre().contains(cadena)) {
 
                 ContactosResultantes.add(contacto);
             }
