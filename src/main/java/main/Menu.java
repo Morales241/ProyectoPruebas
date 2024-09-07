@@ -17,7 +17,7 @@ public class Menu {
         int opcion;
 
         do {
-            System.out.println("--- Bienvenido a tu agenda de contactos ---");
+            System.out.println("\n\n--- Bienvenido a tu agenda de contactos ---");
             System.out.println("--- Elige una de las siguientes opciones ---");
             System.out.println("1. Agregar un nuevo contacto");
             System.out.println("2. Buscar contacto existente");
@@ -26,6 +26,7 @@ public class Menu {
             System.out.println("0. Salir");
             System.out.println("Ingresa la opción: ");
             opcion = tec.nextInt();
+            
 
             switch (opcion) {
                 case 1:
@@ -38,7 +39,7 @@ public class Menu {
                     //editarContacto();
                     break;
                 case 4:
-                    //eliminarContacto();
+                    menu.eliminarContacto();
                     break;
                 case 0:
                     System.out.println("Hasta la proxima");
@@ -46,6 +47,8 @@ public class Menu {
                 default:
                     System.out.println("Opción no válida");
             }
+            
+            
         } while (opcion != 0);
     }
     
@@ -55,8 +58,7 @@ public class Menu {
         
         System.out.println(" Ingrese el nombre del nuevo contacto");
         System.out.println("(El nombre solo tiene que tener letras)");
-        tec.next();
-        
+        tec.nextLine();
         nombre = tec.nextLine();
         
         System.out.println("Ingrese el correo del nuevo contacto");
@@ -69,6 +71,21 @@ public class Menu {
         
         
         control.agregarContacto(nombre, correo, telefono);
+        
+        }catch(Exception ex){
+            System.out.println("Algo salió mal: "+ex.getMessage());
+        }
+    }
+    
+    public void eliminarContacto(){
+        try{
+        String telefono;
+        
+        System.out.println(" Ingrese el telefono del contacto que quiera eliminar");
+        tec.nextLine();
+        telefono = tec.nextLine();
+        
+        control.eliminarContacto(telefono);
         
         }catch(Exception ex){
             System.out.println("Algo salió mal: "+ex.getMessage());

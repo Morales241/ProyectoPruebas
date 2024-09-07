@@ -32,8 +32,9 @@ public class agendaContactos {
         return Contactos;
     }
 
-    public void agregarContacto(contacto Contacto) {
-        this.Contactos.add(Contacto);
+    public void agregarContacto(String nombre, String correo, String telefono) {
+
+        this.Contactos.add(new contacto(nombre, correo, telefono));
     }
 
     public void eliminarContacto(String numero) throws Exception {
@@ -50,7 +51,7 @@ public class agendaContactos {
         if (contactoAEliminar != null) {
             Contactos.remove(contactoAEliminar);
         } else {
-            throw new Exception("El telefono no fue encontrado en la lista");
+            throw new Exception("El telefono no fue encontrado en la agenda");
         }
 
     }
@@ -72,11 +73,11 @@ public class agendaContactos {
         return contactos.get(posicion);
     }
 
-    public void modificarContacto(contacto ContactoExistente, contacto ContactoModificado) {
+    public void modificarContacto(contacto ContactoExistente, String nombre, String correo, String telefono) {
 
         int posicion = Contactos.indexOf(ContactoExistente);
 
-        Contactos.set(posicion, ContactoModificado);
+        Contactos.set(posicion, new contacto(nombre, correo, telefono));
     }
 ;
 
