@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package main;
+package presentación;
 
 /**
  * Clase presentacion del programa
  * @author Equipo: ponle como sea bro
  */
-public class Presentacion {
+public class main {
 
     /**
      * 

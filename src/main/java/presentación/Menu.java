@@ -1,4 +1,4 @@
-package main;
+package presentación;
 
 import java.util.Scanner;
 import negocio.negocio;

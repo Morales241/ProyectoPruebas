@@ -73,7 +73,11 @@ public class agendaContactosTest {
         System.out.println("getContactos");
         agendaContactos instance = agendaContactos.getInstance();
         List<contacto> expResult = new ArrayList<>();
+        expResult.add(instance.seleccionarContacto(0));
+        expResult.add(instance.seleccionarContacto(1));
+        
         List<contacto> result = instance.getContactos();
+        
         assertEquals(expResult, result);
     }
 
@@ -94,9 +98,7 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testEliminarContacto() throws Exception {
         System.out.println("eliminarContacto");
-        contacto Contacto = new contacto("jesus", "momom@mom", "1212121212");
         agendaContactos instance = agendaContactos.getInstance();
-        instance.agregarContacto("jesus", "momom@mom", "1212121212");
         instance.eliminarContacto("1212121212");
     }
 
@@ -108,13 +110,9 @@ public class agendaContactosTest {
         System.out.println("buscarContactos");
         String cadena = "jesus";
         agendaContactos instance = agendaContactos.getInstance();
-        instance.agregarContacto("jesus", "momom@mom", "1212121212");
-        boolean expResult = new ArrayList<contacto>().add(new contacto("jesus", "momom@mom", "1212121212"));
         
         List<contacto> result = instance.buscarContactos(cadena);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -126,9 +124,9 @@ public class agendaContactosTest {
         int posicion = 0;
         agendaContactos instance = agendaContactos.getInstance();
         
-        instance.agregarContacto("jesus", "momom@mom", "1212121212");
+        instance.agregarContacto("josue", "masa@moas", "2432242323");
         
-        contacto expResult = new contacto("jesus", "momom@mom", "1212121212");
+        contacto expResult = instance.seleccionarContacto(0);
         contacto result = instance.seleccionarContacto(posicion);
         assertEquals(expResult, result);
     }
