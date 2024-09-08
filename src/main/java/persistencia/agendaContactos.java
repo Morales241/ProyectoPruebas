@@ -69,15 +69,15 @@ public class agendaContactos {
         return ContactosResultantes;
     }
 
-    public contacto seleccionarContacto(int posicion, List<contacto> contactos) {
-        return contactos.get(posicion);
+    public contacto seleccionarContacto(int posicion) {
+        return Contactos.get(posicion);
     }
 
-    public void modificarContacto(contacto ContactoExistente, String nombre, String correo, String telefono) {
+    public void modificarContacto(contacto ContactoExistente, contacto ContactoNuevo) {
 
         int posicion = Contactos.indexOf(ContactoExistente);
 
-        Contactos.set(posicion, new contacto(nombre, correo, telefono));
+        Contactos.set(posicion, ContactoNuevo);
     }
 ;
 

@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 import negocio.negocio;
+import persistencia.contacto;
 
 /**
  *
@@ -36,7 +37,7 @@ public class Menu {
                     menu.buscarContacto();
                     break;
                 case 3:
-                    //editarContacto();
+                    menu.editarContacto();
                     break;
                 case 4:
                     menu.eliminarContacto();
@@ -85,7 +86,7 @@ public class Menu {
             telefono = tec.nextLine();
 
             control.eliminarContacto(telefono);
-            
+
             System.out.println("El contacto se elimino correctamente!");
 
         } catch (Exception ex) {
@@ -130,7 +131,7 @@ public class Menu {
             if (!control.buscarNombre(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
             }
-            
+
             control.buscarNombre(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
             });
@@ -145,11 +146,11 @@ public class Menu {
             System.out.println("\nIngrese el telefono del contacto");
             tec.nextLine();
             busqueda = tec.nextLine();
-            
+
             if (!control.buscarNombre(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
             }
-            
+
             control.buscarTelefono(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
             });
@@ -157,5 +158,67 @@ public class Menu {
             System.out.println("Algo salió mal: " + ex.getMessage());
         }
     }
+
+    public void editarContacto() {
+
+        int opcion = 1;
+        String nombre, correo, telefono;
+
+        control.traerTodosLosContactos().forEach(contacto -> {
+            System.out.println((control.traerTodosLosContactos().indexOf(contacto) + 1) + ". " + contacto.getNombre());
+        });
+
+        System.out.println("Seleccione un contacto por el numero de lista");
+
+        int numeroC = tec.nextInt();
+
+        contacto resultado = control.seleccionarContacto(numeroC);
+
+        nombre = resultado.getNombre();
+        correo = resultado.getCorreo();
+        telefono = resultado.getNumero();
+
+        do {
+            System.out.println(resultado.getNombre());
+            System.out.println("--\nSeleccione la caracteristica que quiere cambiar--");
+            System.out.println("1. nombre");
+            System.out.println("2. correo");
+            System.out.println("3. telefono");
+            System.out.println("0. regresar");
+            tec.nextLine();
+            opcion = tec.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Inserte el nuevo nombre");
+                    tec.nextLine();
+                    nombre = tec.nextLine();
+                    control.editarContacto(resultado, nombre, correo, telefono);
+                    break;
+
+                case 2:
+                    System.out.println("Inserte el nuevo correo");
+                    tec.nextLine();
+                    correo = tec.nextLine();
+                    control.editarContacto(resultado, nombre, correo, telefono);
+                    break;
+
+                case 3:
+                    System.out.println("Inserte el nuevo telefono");
+                    tec.nextLine();
+                    telefono = tec.nextLine();
+                    control.editarContacto(resultado, nombre, correo, telefono);
+                    break;
+
+                case 0:
+                    System.out.println("Regresar");
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+            }
+            
+        } while (opcion != 0);
+    }
+    
 
 }

@@ -63,5 +63,19 @@ public class negocio {
         
     }
     
+    public List<contacto> traerTodosLosContactos(){
+        return agenda.getContactos();
+    }
+    
+    public contacto seleccionarContacto(int index){
+        
+        return agenda.seleccionarContacto(index);
+        
+    }
+    
+    public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono){
+        
+        agenda.modificarContacto(contectoExistente, new contacto(nombre, correo, telefono));
+    }
     
 }
