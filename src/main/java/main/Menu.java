@@ -70,6 +70,7 @@ public class Menu {
 
             control.agregarContacto(nombre, correo, telefono);
 
+            System.out.println("El contacto se agrego correctamente!");
         } catch (Exception ex) {
             System.out.println("Algo salió mal: " + ex.getMessage());
         }
@@ -84,6 +85,8 @@ public class Menu {
             telefono = tec.nextLine();
 
             control.eliminarContacto(telefono);
+            
+            System.out.println("El contacto se elimino correctamente!");
 
         } catch (Exception ex) {
             System.out.println("Algo salió mal: " + ex.getMessage());
@@ -124,6 +127,10 @@ public class Menu {
             tec.nextLine();
             busqueda = tec.nextLine();
 
+            if (!control.buscarNombre(busqueda).isEmpty()) {
+                System.out.println("La lista de los contactos es la siguiente:");
+            }
+            
             control.buscarNombre(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
             });
@@ -138,7 +145,11 @@ public class Menu {
             System.out.println("\nIngrese el telefono del contacto");
             tec.nextLine();
             busqueda = tec.nextLine();
-
+            
+            if (!control.buscarNombre(busqueda).isEmpty()) {
+                System.out.println("La lista de los contactos es la siguiente:");
+            }
+            
             control.buscarTelefono(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
             });
