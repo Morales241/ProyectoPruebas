@@ -62,9 +62,9 @@ public class ValidadoresTest {
     @Test
     public void testValidarTelefono() {
         System.out.println("validarTelefono");
-        String telefono = "12121asd212";
+        String telefono = "1212121212";
         Validadores instance = Validadores.getInstance();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.validarTelefono(telefono);
         assertEquals(expResult, result);
     }

@@ -4,6 +4,7 @@
  */
 package persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -59,11 +60,9 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testGetInstance() {
         System.out.println("getInstance");
-        agendaContactos expResult = null;
+        agendaContactos expResult = agendaContactos.getInstance();
         agendaContactos result = agendaContactos.getInstance();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,12 +71,10 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testGetContactos() {
         System.out.println("getContactos");
-//        agendaContactos instance = agendaContactos();
-        List<contacto> expResult = null;
-//        List<contacto> result = instance.getContactos();
-//      F  assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        agendaContactos instance = agendaContactos.getInstance();
+        List<contacto> expResult = new ArrayList<>();
+        List<contacto> result = instance.getContactos();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -86,24 +83,21 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testAgregarContacto() {
         System.out.println("agregarContacto");
-        contacto Contacto;
+        contacto Contacto = new contacto("jesus", "momom@mom", "1212121212");
         agendaContactos instance = agendaContactos.getInstance();
-//        instance.agregarContacto(Contacto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.agregarContacto("jesus", "momom@mom", "1212121212");
     }
 
     /**
      * Test of eliminarContacto method, of class agendaContactos.
      */
     @org.junit.jupiter.api.Test
-    public void testEliminarContacto() {
+    public void testEliminarContacto() throws Exception {
         System.out.println("eliminarContacto");
-        contacto Contacto = null;
+        contacto Contacto = new contacto("jesus", "momom@mom", "1212121212");
         agendaContactos instance = agendaContactos.getInstance();
-//        instance.eliminarContacto(Contacto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.agregarContacto("jesus", "momom@mom", "1212121212");
+        instance.eliminarContacto("1212121212");
     }
 
     /**
@@ -112,9 +106,11 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testBuscarContactos() {
         System.out.println("buscarContactos");
-        String cadena = "";
+        String cadena = "jesus";
         agendaContactos instance = agendaContactos.getInstance();
-        List<contacto> expResult = null;
+        instance.agregarContacto("jesus", "momom@mom", "1212121212");
+        boolean expResult = new ArrayList<contacto>().add(new contacto("jesus", "momom@mom", "1212121212"));
+        
         List<contacto> result = instance.buscarContactos(cadena);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -128,13 +124,13 @@ public class agendaContactosTest {
     public void testSeleccionarContacto() {
         System.out.println("seleccionarContacto");
         int posicion = 0;
-        List<contacto> contactos = null;
         agendaContactos instance = agendaContactos.getInstance();
-        contacto expResult = null;
-//        contacto result = instance.seleccionarContacto(posicion, contactos);
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        instance.agregarContacto("jesus", "momom@mom", "1212121212");
+        
+        contacto expResult = new contacto("jesus", "momom@mom", "1212121212");
+        contacto result = instance.seleccionarContacto(posicion);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -143,12 +139,13 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testModificarContacto() {
         System.out.println("modificarContacto");
-        contacto ContactoExistente = null;
-        contacto ContactoModificado = null;
+       
         agendaContactos instance = agendaContactos.getInstance();
+        instance.agregarContacto("jesus", "momom@mom", "1212121212");
+        contacto ContactoExistente = instance.seleccionarContacto(0);
+        
+        contacto ContactoModificado = new contacto("madero", "momom@mom", "1212121212");
         instance.modificarContacto(ContactoExistente, ContactoModificado);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
