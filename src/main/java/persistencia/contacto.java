@@ -1,16 +1,26 @@
 package persistencia;
 
 /**
- *
- * @author tacot
+ * Clase que representa un contacto en la agenda.
+ * Contiene información como nombre, correo electrónico y número de teléfono.
+ * 
+ * @author Equipo: ponle como sea bro
  */
 public class contacto {
     
     private String nombre, correo, numero;
     
     public contacto(){
+        // Constructor vacío
     }
 
+    /**
+     * Constructor para crear un nuevo contacto con datos iniciales.
+     * 
+     * @param nombre Nombre del contacto.
+     * @param correo Correo electrónico del contacto.
+     * @param numero Número de teléfono del contacto.
+     */
     public contacto(String nombre, String correo, String numero) {
         this.nombre = nombre;
         this.correo = correo;
@@ -45,6 +55,4 @@ public class contacto {
     public String toString() {
         return "nombre=" + nombre + ", correo=" + correo + ", numero=" + numero;
     }
-
-    
 }

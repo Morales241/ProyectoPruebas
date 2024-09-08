@@ -5,8 +5,8 @@ import negocio.negocio;
 import persistencia.contacto;
 
 /**
- *
- * @author tacot
+ * Clase que represenrta el menu del programa
+ * @author Equipo: ponle como sea bro
  */
 public class Menu {
 
@@ -14,7 +14,10 @@ public class Menu {
     static negocio control = new negocio();
     static Menu menu = new Menu();
 
-    public static void main(String[] args) {
+    /**
+     * Este es el menú principal del programa
+     */
+    public void Menu() {
 
         int opcion;
 
@@ -52,6 +55,9 @@ public class Menu {
         } while (opcion != 0);
     }
 
+    /**
+     * Submenu para agregar un nuevo contacto
+     */
     public void agregarContacto() {
         try {
             String nombre, correo, telefono;
@@ -77,6 +83,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Submenu para eliminar un contacto ya existente
+     */
     public void eliminarContacto() {
         try {
             String telefono;
@@ -94,6 +103,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Submenu para buscar contacto
+     */
     public void buscarContacto() {
 
         int opcion;
@@ -121,6 +133,9 @@ public class Menu {
         } while (opcion != 0);
     }
 
+    /**
+     * Submenu para buscar contacto por nombre
+     */
     public void buscarContactoPorNombre() {
         String busqueda;
         try {
@@ -140,6 +155,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Submenu para buscar contacto por telefono
+     */
     public void buscarContactoPorTelefono() {
         String busqueda;
         try {
@@ -159,6 +177,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Submenu para editar un contacto 
+     */
     public void editarContacto() {
 
         int opcion = 1;

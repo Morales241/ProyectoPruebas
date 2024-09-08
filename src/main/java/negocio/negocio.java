@@ -6,76 +6,103 @@ import persistencia.contacto;
 import validador.Validadores;
 
 /**
- *
- * @author tacot
+ * Clase que representa la lógica de negocio para gestionar contactos.
+ * 
+ * @author Equipo: ponle como sea bro
  */
 public class negocio {
     
     Validadores validador = Validadores.getInstance();
-    
     agendaContactos agenda = agendaContactos.getInstance();
     
-    public void agregarContacto(String nombre, String correo, String telefono) throws Exception{
-         
+    /**
+     * Agrega un nuevo contacto a la agenda.
+     * 
+     * @param nombre Nombre del contacto.
+     * @param correo Correo electrónico del contacto.
+     * @param telefono Número de teléfono del contacto.
+     * @throws Exception Si el nombre, teléfono o correo no cumplen con el formato esperado.
+     */
+    public void agregarContacto(String nombre, String correo, String telefono) throws Exception {
         if (!validador.validarNombre(nombre)) {
-            
-            throw new Exception("El nombre no cumple con el formato ");
-            
-        }else if (!validador.validarTelefono(telefono)) {
-            
-            throw new Exception("El telefono no cumple con el formato ");
-            
-        }else if (!validador.validarCorreo(correo)) {
-            
-            throw new Exception("El correo no cumple con el formato ");
-        }else{
-            
+            throw new Exception("El nombre no cumple con el formato.");
+        } else if (!validador.validarTelefono(telefono)) {
+            throw new Exception("El teléfono no cumple con el formato.");
+        } else if (!validador.validarCorreo(correo)) {
+            throw new Exception("El correo no cumple con el formato.");
         }
         agenda.agregarContacto(nombre, correo, telefono);
     }
     
-    public void eliminarContacto(String telefono) throws Exception{
-        
+    /**
+     * Elimina un contacto de la agenda.
+     * 
+     * @param telefono Número de teléfono del contacto a eliminar.
+     * @throws Exception Si el teléfono no cumple con el formato esperado.
+     */
+    public void eliminarContacto(String telefono) throws Exception {
         if (!validador.validarTelefono(telefono)) {
-            throw  new Exception("El telefono no venia con el formato predeterminado");
+            throw new Exception("El teléfono no cumple con el formato predeterminado.");
         }
         agenda.eliminarContacto(telefono);
-        
     }
     
-    public List<contacto>  buscarNombre(String nombre) throws Exception{
-        
+    /**
+     * Busca contactos por nombre.
+     * 
+     * @param nombre Nombre del contacto a buscar.
+     * @return Lista de contactos que coinciden con el nombre.
+     * @throws Exception Si el nombre no es válido.
+     */
+    public List<contacto> buscarNombre(String nombre) throws Exception {
         if (!validador.validarNombre(nombre)) {
-            
-            throw new Exception("Este no es un nombre de contacto ");
-            
+            throw new Exception("Este no es un nombre de contacto válido.");
         }
         return agenda.buscarContactos(nombre);
-        
     }
     
-    public List<contacto> buscarTelefono(String telefono) throws Exception{
-        
+    /**
+     * Busca contactos por número de teléfono.
+     * 
+     * @param telefono Número de teléfono a buscar.
+     * @return Lista de contactos que coinciden con el teléfono.
+     * @throws Exception Si el teléfono no cumple con el formato esperado.
+     */
+    public List<contacto> buscarTelefono(String telefono) throws Exception {
         if (!validador.validarTelefono(telefono)) {
-            throw new Exception("Este telefono no cumple con el formato");
+            throw new Exception("Este teléfono no cumple con el formato.");
         }
         return agenda.buscarContactos(telefono);
-        
     }
     
-    public List<contacto> traerTodosLosContactos(){
+    /**
+     * Obtiene todos los contactos almacenados en la agenda.
+     * 
+     * @return Lista de todos los contactos.
+     */
+    public List<contacto> traerTodosLosContactos() {
         return agenda.getContactos();
     }
     
-    public contacto seleccionarContacto(int index){
-        
+    /**
+     * Selecciona un contacto específico por su índice.
+     * 
+     * @param index Índice del contacto a seleccionar.
+     * @return El contacto seleccionado.
+     */
+    public contacto seleccionarContacto(int index) {
         return agenda.seleccionarContacto(index);
-        
     }
     
-    public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono){
-        
+    /**
+     * Edita un contacto existente.
+     * 
+     * @param contectoExistente Contacto a modificar.
+     * @param nombre Nuevo nombre del contacto.
+     * @param correo Nuevo correo electrónico del contacto.
+     * @param telefono Nuevo número de teléfono del contacto.
+     */
+    public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono) {
         agenda.modificarContacto(contectoExistente, new contacto(nombre, correo, telefono));
     }
-    
 }
