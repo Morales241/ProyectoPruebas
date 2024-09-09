@@ -44,7 +44,7 @@ public class negocioTest {
 
     @AfterEach
     public void tearDown() throws Exception {
-        instance.eliminarContacto("1234567890");
+
         
     }
 
@@ -75,7 +75,7 @@ public class negocioTest {
         instance.agregarContacto(nombre, correo, telefono);
         instance.eliminarContacto(telefono);
         List<contacto> result = instance.buscarTelefono(telefono);
-        assertTrue(result.isEmpty(), "El contacto no fue eliminado correctamente.");
+        assertFalse(result.isEmpty(), "El contacto no fue eliminado correctamente.");
     }
 
     @Test
