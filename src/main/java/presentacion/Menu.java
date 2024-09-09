@@ -6,6 +6,7 @@ import persistencia.contacto;
 
 /**
  * Clase que represenrta el menu del programa
+ *
  * @author Equipo: ponle como sea bro
  */
 public class Menu {
@@ -145,11 +146,10 @@ public class Menu {
 
             if (!control.buscarNombre(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
-            }else{
-                
+            } else {
+
                 System.out.println("No se ha encontrado ningun contacto con este nombre");
             }
-            
 
             control.buscarNombre(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
@@ -171,8 +171,8 @@ public class Menu {
 
             if (!control.buscarTelefono(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
-            }else{
-                
+            } else {
+
                 System.out.println("No se ha encontrado ningun contacto con este telefono");
             }
 
@@ -185,7 +185,7 @@ public class Menu {
     }
 
     /**
-     * Submenu para editar un contacto 
+     * Submenu para editar un contacto
      */
     public void editarContacto() {
 
@@ -214,44 +214,47 @@ public class Menu {
             System.out.println("2. correo");
             System.out.println("3. telefono");
             System.out.println("0. regresar");
-            
+
             opcion = tec.nextInt();
 
-            switch (opcion) {
-                case 1:
-                    System.out.println("Inserte el nuevo nombre");
-                    tec.nextLine();
-                    nombre = tec.nextLine();
-                    control.editarContacto(resultado, nombre, correo, telefono);
-                    System.out.println("se ha editado el nombre correctamente\n");
-                    break;
+            try {
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Inserte el nuevo nombre");
+                        tec.nextLine();
+                        nombre = tec.nextLine();
+                        control.editarContacto(resultado, nombre, correo, telefono);
+                        System.out.println("se ha editado el nombre correctamente\n");
+                        break;
 
-                case 2:
-                    System.out.println("Inserte el nuevo correo");
-                    tec.nextLine();
-                    correo = tec.nextLine();
-                    control.editarContacto(resultado, nombre, correo, telefono);
-                    System.out.println("se ha editado el correo correctamente\n");
-                    break;
+                    case 2:
+                        System.out.println("Inserte el nuevo correo");
+                        tec.nextLine();
+                        correo = tec.nextLine();
+                        control.editarContacto(resultado, nombre, correo, telefono);
+                        System.out.println("se ha editado el correo correctamente\n");
+                        break;
 
-                case 3:
-                    System.out.println("Inserte el nuevo telefono");
-                    tec.nextLine();
-                    telefono = tec.nextLine();
-                    control.editarContacto(resultado, nombre, correo, telefono);
-                    System.out.println("Inserte el nuevo telefono");
-                    System.out.println("se ha editado el telefono correctamente\n");
-                    break;
+                    case 3:
+                        System.out.println("Inserte el nuevo telefono");
+                        tec.nextLine();
+                        telefono = tec.nextLine();
+                        control.editarContacto(resultado, nombre, correo, telefono);
+                        System.out.println("Inserte el nuevo telefono");
+                        System.out.println("se ha editado el telefono correctamente\n");
+                        break;
 
-                case 0:
-                    System.out.println("Regresar");
-                    break;
-                default:
-                    System.out.println("Opción no válida");
+                    case 0:
+                        System.out.println("Regresando");
+                        break;
+                    default:
+                        System.out.println("Opción no válida");
+                }
+            } catch (Exception ex) {
+                System.out.println("Algo salio mal: " + ex.getMessage());
             }
-            
+
         } while (opcion != 0);
     }
-    
 
 }

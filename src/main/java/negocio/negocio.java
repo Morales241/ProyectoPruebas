@@ -103,7 +103,16 @@ public class negocio {
      * @param correo Nuevo correo electrónico del contacto.
      * @param telefono Nuevo número de teléfono del contacto.
      */
-    public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono) {
+    public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono) throws Exception {
+        
+        if (!validador.validarNombre(nombre)) {
+            throw new Exception("El nombre no cumple con el formato.");
+        } else if (!validador.validarTelefono(telefono)) {
+            throw new Exception("El teléfono no cumple con el formato.");
+        } else if (!validador.validarCorreo(correo)) {
+            throw new Exception("El correo no cumple con el formato.");
+        }
+        
         agenda.modificarContacto(contectoExistente, new contacto(nombre, correo, telefono));
     }
 
