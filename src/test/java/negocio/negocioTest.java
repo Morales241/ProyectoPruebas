@@ -20,6 +20,9 @@ import persistencia.contacto;
  */
 public class negocioTest {
 
+    private contacto contactoDefault;
+    private negocio instance;
+
     public negocioTest() {
     }
 
@@ -33,6 +36,8 @@ public class negocioTest {
 
     @BeforeEach
     public void setUp() {
+        contactoDefault = new contacto("Juan", "juan@gmail.com", "1234567890");
+        instance = new negocio();
     }
 
     @AfterEach
@@ -45,11 +50,11 @@ public class negocioTest {
     @Test
     public void testAgregarContacto() throws Exception {
         System.out.println("agregarContacto");
-        String nombre = "Juan";
-        String correo = "juan@gmail.com";
-        String telefono = "1234567890";
+        String nombre = contactoDefault.getNombre();
+        String correo = contactoDefault.getCorreo();
+        String numero = contactoDefault.getNumero();
         negocio instance = new negocio();
-        instance.agregarContacto(nombre, correo, telefono);
+        instance.agregarContacto(nombre, correo, numero);
     }
 
     /**
@@ -58,52 +63,18 @@ public class negocioTest {
     @Test
     public void testEliminarContacto() throws Exception {
         System.out.println("agregarContacto");
-        String nombre = "Juan";
-        String correo = "juan@gmail.com";
-        String telefono = "1234567890";
+        String nombre = contactoDefault.getNombre();
+        String correo = contactoDefault.getCorreo();
+        String telefono = contactoDefault.getNumero();
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
 
         System.out.println("eliminarContacto");
         instance.eliminarContacto(telefono);
+
         List<contacto> result = instance.buscarTelefono(telefono);
         assertFalse(result.isEmpty(), "El contacto no fue eliminado correctamente.");
     }
-
-    /**
-     * Test of buscarNombre method, of class negocio.
-     */
-//    @Test
-//    public void testBuscarNombre() throws Exception {
-//        negocio instance = new negocio();
-//
-//        String nombre = "Juan";
-//        String correo1 = "juan@gmail.com";
-//        String telefono1 = "1234567890";
-//        instance.agregarContacto(nombre, correo1, telefono1);
-//
-//        String correo2 = "otrojuan@gmail.com";
-//        String telefono2 = "0987654321";
-//        instance.agregarContacto(nombre, correo2, telefono2);
-//
-//        List<contacto> result = instance.buscarNombre(nombre);
-//
-//        contacto expectedContact1 = new contacto(nombre, correo1, telefono1);
-//        contacto expectedContact2 = new contacto(nombre, correo2, telefono2);
-//        List<contacto> expResult = new ArrayList<>();
-//        expResult.add(expectedContact1);
-//        expResult.add(expectedContact2);
-//       
-//        assertEquals(expResult.size(), result.size(), "El tamaño de las listas no coincide");
-//
-//        for (contacto exp : expResult) {
-//            assertTrue(result.contains(exp), "El contacto esperado no está en la lista de resultados: " + exp);
-//        }
-//
-//        for (contacto res : result) {
-//            assertTrue(expResult.contains(res), "El contacto en los resultados no es esperado: " + res);
-//        }
-//    }
 
     @Test
     public void testBuscarNombre() throws Exception {
@@ -113,7 +84,7 @@ public class negocioTest {
         String telefono = "1234567890";
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-        
+
         System.out.println("buscarNombre");
         contacto expectedContact = new contacto(nombre, correo, telefono);
         List<contacto> expResult = new ArrayList<>();
@@ -121,7 +92,7 @@ public class negocioTest {
         List<contacto> result = instance.buscarNombre(nombre);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of buscarTelefono method, of class negocio.
      */
