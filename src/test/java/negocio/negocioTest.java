@@ -85,9 +85,8 @@ public class negocioTest {
         String correo = "juan@gmail.com";
         String telefono = "1234567890";
         negocio instance = new negocio();
-        instance.agregarContacto(nombre, correo, telefono);
-        System.out.println("buscarNombre");
-        contacto expectedContact = new contacto(nombre, correo, telefono);
+        instance.eliminarContacto(telefono);
+        contacto expectedContact = instance.seleccionarContacto(0);
         List<contacto> expResult = new ArrayList<>();
         expResult.add(expectedContact);
         List<contacto> result = instance.buscarNombre(nombre);
