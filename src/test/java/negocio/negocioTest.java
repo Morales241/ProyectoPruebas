@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import persistencia.agendaContactos;
 import persistencia.contacto;
 
 /**
@@ -32,6 +33,7 @@ public class negocioTest {
 
     @AfterAll
     public static void tearDownClass() {
+        
     }
 
     @BeforeEach
@@ -41,8 +43,9 @@ public class negocioTest {
     }
 
     @AfterEach
-    public void tearDown() {
-        instance = null;
+    public void tearDown() throws Exception {
+        instance.eliminarContacto("1234567890");
+        
     }
 
     /**
@@ -63,16 +66,16 @@ public class negocioTest {
      */
     @Test
     public void testEliminarContacto() throws Exception {
-        System.out.println("agregarContacto");
+        
+        System.out.println("eliminarContacto");
         String nombre = contactoDefault.getNombre();
         String correo = contactoDefault.getCorreo();
         String telefono = contactoDefault.getNumero();
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-        System.out.println("eliminarContacto");
         instance.eliminarContacto(telefono);
         List<contacto> result = instance.buscarTelefono(telefono);
-        assertFalse(result.isEmpty(), "El contacto no fue eliminado correctamente.");
+        assertTrue(result.isEmpty(), "El contacto no fue eliminado correctamente.");
     }
 
     @Test

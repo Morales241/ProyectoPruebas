@@ -193,7 +193,7 @@ public class Menu {
 
         int numeroC = tec.nextInt();
 
-        contacto resultado = control.seleccionarContacto(numeroC);
+        contacto resultado = control.seleccionarContacto(numeroC - 1);
 
         nombre = resultado.getNombre();
         correo = resultado.getCorreo();
