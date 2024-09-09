@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author tacot
  */
 public class agendaContactosTest {
-    
+
     public agendaContactosTest() {
     }
 //
@@ -75,9 +75,9 @@ public class agendaContactosTest {
         List<contacto> expResult = new ArrayList<>();
         expResult.add(instance.seleccionarContacto(0));
         expResult.add(instance.seleccionarContacto(1));
-        
+
         List<contacto> result = instance.getContactos();
-        
+
         assertEquals(expResult, result);
     }
 
@@ -110,9 +110,9 @@ public class agendaContactosTest {
         System.out.println("buscarContactos");
         String cadena = "jesus";
         agendaContactos instance = agendaContactos.getInstance();
-        
+
         List<contacto> result = instance.buscarContactos(cadena);
-        
+
     }
 
     /**
@@ -123,9 +123,9 @@ public class agendaContactosTest {
         System.out.println("seleccionarContacto");
         int posicion = 0;
         agendaContactos instance = agendaContactos.getInstance();
-        
+
         instance.agregarContacto("josue", "masa@moas", "2432242323");
-        
+
         contacto expResult = instance.seleccionarContacto(0);
         contacto result = instance.seleccionarContacto(posicion);
         assertEquals(expResult, result);
@@ -137,13 +137,77 @@ public class agendaContactosTest {
     @org.junit.jupiter.api.Test
     public void testModificarContacto() {
         System.out.println("modificarContacto");
-       
+
         agendaContactos instance = agendaContactos.getInstance();
         instance.agregarContacto("jesus", "momom@mom", "1212121212");
         contacto ContactoExistente = instance.seleccionarContacto(0);
-        
+
         contacto ContactoModificado = new contacto("madero", "momom@mom", "1212121212");
         instance.modificarContacto(ContactoExistente, ContactoModificado);
     }
-    
+//
+//    @Test
+//    public void testGetInstanceFail() {
+//        System.out.println("getInstance - fail test");
+//        agendaContactos expResult = agendaContactos.getInstance();
+//        agendaContactos result = new agendaContactos();
+//        assertEquals(expResult, result);
+//    }
+//
+//    @Test
+//    public void testGetContactosFail() {
+//        System.out.println("getContactos - fail test");
+//        agendaContactos instance = agendaContactos.getInstance();
+//        List<contacto> expResult = new ArrayList<>();
+//        List<contacto> result = instance.getContactos();
+//        assertEquals(expResult, result);
+//    }
+//
+//    @Test
+//    public void testAgregarContactoFail() {
+//        System.out.println("agregarContacto - fail test");
+//        agendaContactos instance = agendaContactos.getInstance();
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            instance.agregarContacto(null, null, null);
+//        });
+//    }
+//
+//    @Test
+//    public void testEliminarContactoFail() throws Exception {
+//        System.out.println("eliminarContacto - fail test");
+//        agendaContactos instance = agendaContactos.getInstance();
+//        assertThrows(Exception.class, () -> {
+//            instance.eliminarContacto("9999999999"); // Número inexistente
+//        });
+//    }
+//
+//    @Test
+//    public void testBuscarContactosFail() {
+//        System.out.println("buscarContactos - fail test");
+//        String cadena = "nombreInexistente"; // nombre que no existe
+//        agendaContactos instance = agendaContactos.getInstance();
+//        List<contacto> result = instance.buscarContactos(cadena);
+//        assertFalse(result.isEmpty());
+//    }
+//
+//    @Test
+//    public void testSeleccionarContactoFail() {
+//        System.out.println("seleccionarContacto - fail test");
+//        int posicion = 999;
+//        agendaContactos instance = agendaContactos.getInstance();
+//        assertThrows(IndexOutOfBoundsException.class, () -> {
+//            instance.seleccionarContacto(posicion);
+//        });
+//    }
+//
+//    @Test
+//    public void testModificarContactoFail() {
+//        System.out.println("modificarContacto - fail test");
+//        agendaContactos instance = agendaContactos.getInstance();
+//        contacto ContactoModificado = new contacto("madero", "momom@mom", "1212121212");
+//        assertThrows(Exception.class, () -> {
+//            instance.modificarContacto(null, ContactoModificado); // Verifica la excepción correcta
+//        });
+//    }
+
 }

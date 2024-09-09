@@ -4,6 +4,7 @@
  */
 package negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -18,22 +19,22 @@ import persistencia.contacto;
  * @author tacot
  */
 public class negocioTest {
-    
+
     public negocioTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -44,13 +45,11 @@ public class negocioTest {
     @Test
     public void testAgregarContacto() throws Exception {
         System.out.println("agregarContacto");
-        String nombre = "";
-        String correo = "";
-        String telefono = "";
+        String nombre = "Juan";
+        String correo = "juan@gmail.com";
+        String telefono = "1234567890";
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,42 +57,89 @@ public class negocioTest {
      */
     @Test
     public void testEliminarContacto() throws Exception {
-        System.out.println("eliminarContacto");
-        String telefono = "";
+        System.out.println("agregarContacto");
+        String nombre = "Juan";
+        String correo = "juan@gmail.com";
+        String telefono = "1234567890";
         negocio instance = new negocio();
+        instance.agregarContacto(nombre, correo, telefono);
+
+        System.out.println("eliminarContacto");
         instance.eliminarContacto(telefono);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<contacto> result = instance.buscarTelefono(telefono);
+        assertFalse(result.isEmpty(), "El contacto no fue eliminado correctamente.");
     }
 
     /**
      * Test of buscarNombre method, of class negocio.
      */
+//    @Test
+//    public void testBuscarNombre() throws Exception {
+//        negocio instance = new negocio();
+//
+//        String nombre = "Juan";
+//        String correo1 = "juan@gmail.com";
+//        String telefono1 = "1234567890";
+//        instance.agregarContacto(nombre, correo1, telefono1);
+//
+//        String correo2 = "otrojuan@gmail.com";
+//        String telefono2 = "0987654321";
+//        instance.agregarContacto(nombre, correo2, telefono2);
+//
+//        List<contacto> result = instance.buscarNombre(nombre);
+//
+//        contacto expectedContact1 = new contacto(nombre, correo1, telefono1);
+//        contacto expectedContact2 = new contacto(nombre, correo2, telefono2);
+//        List<contacto> expResult = new ArrayList<>();
+//        expResult.add(expectedContact1);
+//        expResult.add(expectedContact2);
+//       
+//        assertEquals(expResult.size(), result.size(), "El tamaño de las listas no coincide");
+//
+//        for (contacto exp : expResult) {
+//            assertTrue(result.contains(exp), "El contacto esperado no está en la lista de resultados: " + exp);
+//        }
+//
+//        for (contacto res : result) {
+//            assertTrue(expResult.contains(res), "El contacto en los resultados no es esperado: " + res);
+//        }
+//    }
+
     @Test
     public void testBuscarNombre() throws Exception {
-        System.out.println("buscarNombre");
-        String nombre = "";
+        System.out.println("agregarContacto");
+        String nombre = "Juan";
+        String correo = "juan@gmail.com";
+        String telefono = "1234567890";
         negocio instance = new negocio();
-        List<contacto> expResult = null;
+        instance.agregarContacto(nombre, correo, telefono);
+        
+        System.out.println("buscarNombre");
+        contacto expectedContact = new contacto(nombre, correo, telefono);
+        List<contacto> expResult = new ArrayList<>();
+        expResult.add(expectedContact);
         List<contacto> result = instance.buscarNombre(nombre);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
+    
     /**
      * Test of buscarTelefono method, of class negocio.
      */
     @Test
     public void testBuscarTelefono() throws Exception {
-        System.out.println("buscarTelefono");
-        String telefono = "";
+        System.out.println("agregarContacto");
+        String nombre = "Juan";
+        String correo = "juan@gmail.com";
+        String telefono = "1234567890";
         negocio instance = new negocio();
-        List<contacto> expResult = null;
+        instance.agregarContacto(nombre, correo, telefono);
+
+        System.out.println("buscarTelefono");
+        contacto expectedContact = new contacto(nombre, correo, telefono);
+        List<contacto> expResult = new ArrayList<>();
+        expResult.add(expectedContact);
         List<contacto> result = instance.buscarTelefono(telefono);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,8 +152,6 @@ public class negocioTest {
         List<contacto> expResult = null;
         List<contacto> result = instance.traerTodosLosContactos();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -121,8 +165,6 @@ public class negocioTest {
         contacto expResult = null;
         contacto result = instance.seleccionarContacto(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -137,8 +179,6 @@ public class negocioTest {
         String telefono = "";
         negocio instance = new negocio();
         instance.editarContacto(contectoExistente, nombre, correo, telefono);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }

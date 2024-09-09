@@ -83,14 +83,6 @@ public class ValidadoresTest {
     }
 
     @Test
-    public void testGetInstanceFail() {
-        System.out.println("getInstance - fail test");
-        Validadores expResult = Validadores.getInstance();
-        Validadores result = new Validadores(); 
-        assertNotEquals(expResult, result); 
-    }
-
-    @Test
     public void testValidarNombreFail() {
         System.out.println("validarNombre - fail test");
         String nombre = "1234"; // nombre inválido

@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.List;
+import java.util.Objects;
 import persistencia.agendaContactos;
 import persistencia.contacto;
 import validador.Validadores;
@@ -105,4 +106,32 @@ public class negocio {
     public void editarContacto(contacto contectoExistente, String nombre, String correo, String telefono) {
         agenda.modificarContacto(contectoExistente, new contacto(nombre, correo, telefono));
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.validador);
+        hash = 83 * hash + Objects.hashCode(this.agenda);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final negocio other = (negocio) obj;
+        if (!Objects.equals(this.validador, other.validador)) {
+            return false;
+        }
+        return Objects.equals(this.agenda, other.agenda);
+    }
+    
+    
 }

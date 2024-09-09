@@ -14,7 +14,7 @@ public class agendaContactos {
     protected static agendaContactos instance;
     private final List<contacto> Contactos;
 
-    private agendaContactos() {
+    agendaContactos() {
         Contactos = new ArrayList<>();
     }
 
