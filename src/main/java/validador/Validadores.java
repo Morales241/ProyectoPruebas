@@ -13,7 +13,7 @@ public class Validadores {
     
     protected static Validadores instance;
 
-    private Validadores() {
+    Validadores() {
         // Constructor privado para implementar el patrón Singleton
     }
 
