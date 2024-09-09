@@ -101,13 +101,12 @@ public class negocioTest {
      */
     @Test
     public void testBuscarTelefono() throws Exception {
-        System.out.println("agregarContacto");
+        System.out.println("buscarTelefono");
         String nombre = "Juan";
         String correo = "juan@gmail.com";
         String telefono = "1234567890";
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-        System.out.println("buscarTelefono");
         contacto expectedContact = new contacto(nombre, correo, telefono);
         List<contacto> expResult = new ArrayList<>();
         expResult.add(expectedContact);
@@ -120,6 +119,12 @@ public class negocioTest {
      */
     @Test
     public void testTraerTodosLosContactos() throws Exception {
+        
+        System.out.println("TraerTodosLosContactos");
+        negocio instance = new negocio();
+        int expResult = 2;
+        List<contacto> result = instance.traerTodosLosContactos();
+        assertEquals(expResult, result.size());
     }
 
     /**
@@ -127,6 +132,7 @@ public class negocioTest {
      */
     @Test
     public void testSeleccionarContacto() throws Exception {
+        
     }
 
     /**
