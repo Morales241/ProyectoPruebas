@@ -1,4 +1,4 @@
-package presentación;
+package presentacion;
 
 import java.util.Scanner;
 import negocio.negocio;
@@ -145,7 +145,11 @@ public class Menu {
 
             if (!control.buscarNombre(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
+            }else{
+                
+                System.out.println("No se ha encontrado ningun contacto con este nombre");
             }
+            
 
             control.buscarNombre(busqueda).forEach(contacto -> {
                 System.out.println(contacto);
@@ -167,6 +171,9 @@ public class Menu {
 
             if (!control.buscarTelefono(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
+            }else{
+                
+                System.out.println("No se ha encontrado ningun contacto con este telefono");
             }
 
             control.buscarTelefono(busqueda).forEach(contacto -> {
@@ -192,6 +199,7 @@ public class Menu {
         System.out.println("Seleccione un contacto por el numero de lista");
 
         int numeroC = tec.nextInt();
+        tec.nextLine();
 
         contacto resultado = control.seleccionarContacto(numeroC - 1);
 
@@ -201,12 +209,12 @@ public class Menu {
 
         do {
             System.out.println(resultado.getNombre());
-            System.out.println("--\nSeleccione la caracteristica que quiere cambiar--");
+            System.out.println("\n--Seleccione la caracteristica que quiere cambiar--");
             System.out.println("1. nombre");
             System.out.println("2. correo");
             System.out.println("3. telefono");
             System.out.println("0. regresar");
-            tec.nextLine();
+            
             opcion = tec.nextInt();
 
             switch (opcion) {
@@ -215,6 +223,7 @@ public class Menu {
                     tec.nextLine();
                     nombre = tec.nextLine();
                     control.editarContacto(resultado, nombre, correo, telefono);
+                    System.out.println("se ha editado el nombre correctamente\n");
                     break;
 
                 case 2:
@@ -222,6 +231,7 @@ public class Menu {
                     tec.nextLine();
                     correo = tec.nextLine();
                     control.editarContacto(resultado, nombre, correo, telefono);
+                    System.out.println("se ha editado el correo correctamente\n");
                     break;
 
                 case 3:
@@ -229,6 +239,8 @@ public class Menu {
                     tec.nextLine();
                     telefono = tec.nextLine();
                     control.editarContacto(resultado, nombre, correo, telefono);
+                    System.out.println("Inserte el nuevo telefono");
+                    System.out.println("se ha editado el telefono correctamente\n");
                     break;
 
                 case 0:
