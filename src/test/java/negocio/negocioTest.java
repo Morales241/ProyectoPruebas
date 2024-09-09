@@ -131,8 +131,13 @@ public class negocioTest {
      * Test of seleccionarContacto method, of class negocio.
      */
     @Test
-    public void testSeleccionarContacto() throws Exception {
+    public void testSeleccionarContacto() {
+        System.out.println("Seleccionar contacto");
         
+        negocio instance = new negocio();
+        contacto expResult = contactoDefault;
+        contacto result = instance.seleccionarContacto(1);
+        assertEquals(expResult, result);
     }
 
     /**
