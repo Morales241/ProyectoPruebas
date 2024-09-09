@@ -165,7 +165,7 @@ public class Menu {
             tec.nextLine();
             busqueda = tec.nextLine();
 
-            if (!control.buscarNombre(busqueda).isEmpty()) {
+            if (!control.buscarTelefono(busqueda).isEmpty()) {
                 System.out.println("La lista de los contactos es la siguiente:");
             }
 
