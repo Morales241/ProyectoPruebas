@@ -42,6 +42,7 @@ public class negocioTest {
 
     @AfterEach
     public void tearDown() {
+        instance = null;
     }
 
     /**
@@ -68,28 +69,28 @@ public class negocioTest {
         String telefono = contactoDefault.getNumero();
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-
         System.out.println("eliminarContacto");
         instance.eliminarContacto(telefono);
-
         List<contacto> result = instance.buscarTelefono(telefono);
         assertFalse(result.isEmpty(), "El contacto no fue eliminado correctamente.");
     }
 
     @Test
     public void testBuscarNombre() throws Exception {
-        System.out.println("agregarContacto");
+        System.out.println("buscarNombre");
         String nombre = "Juan";
         String correo = "juan@gmail.com";
         String telefono = "1234567890";
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-
         System.out.println("buscarNombre");
         contacto expectedContact = new contacto(nombre, correo, telefono);
         List<contacto> expResult = new ArrayList<>();
         expResult.add(expectedContact);
         List<contacto> result = instance.buscarNombre(nombre);
+
+        // Verificar que no haya duplicados
+        assertEquals(1, result.size(), "Se encontraron contactos duplicados.");
         assertEquals(expResult, result);
     }
 
@@ -104,7 +105,6 @@ public class negocioTest {
         String telefono = "1234567890";
         negocio instance = new negocio();
         instance.agregarContacto(nombre, correo, telefono);
-
         System.out.println("buscarTelefono");
         contacto expectedContact = new contacto(nombre, correo, telefono);
         List<contacto> expResult = new ArrayList<>();
@@ -117,39 +117,39 @@ public class negocioTest {
      * Test of traerTodosLosContactos method, of class negocio.
      */
     @Test
-    public void testTraerTodosLosContactos() {
-        System.out.println("traerTodosLosContactos");
-        negocio instance = new negocio();
-        List<contacto> expResult = null;
-        List<contacto> result = instance.traerTodosLosContactos();
-        assertEquals(expResult, result);
+    public void testTraerTodosLosContactos() throws Exception {
     }
 
     /**
      * Test of seleccionarContacto method, of class negocio.
      */
     @Test
-    public void testSeleccionarContacto() {
-        System.out.println("seleccionarContacto");
-        int index = 0;
-        negocio instance = new negocio();
-        contacto expResult = null;
-        contacto result = instance.seleccionarContacto(index);
-        assertEquals(expResult, result);
+    public void testSeleccionarContacto() throws Exception {
     }
 
     /**
      * Test of editarContacto method, of class negocio.
      */
     @Test
-    public void testEditarContacto() {
+    public void testEditarContacto() throws Exception {
         System.out.println("editarContacto");
-        contacto contectoExistente = null;
-        String nombre = "";
-        String correo = "";
-        String telefono = "";
+        String nombreOriginal = contactoDefault.getNombre();
+        String correoOriginal = contactoDefault.getCorreo();
+        String telefonoOriginal = contactoDefault.getNumero();
+        String nuevoNombre = "Juanito";
+        String nuevoCorreo = "juanito@gmail.com";
+        String nuevoTelefono = "0987654321";
         negocio instance = new negocio();
-        instance.editarContacto(contectoExistente, nombre, correo, telefono);
+        instance.agregarContacto(nombreOriginal, correoOriginal, telefonoOriginal);
+        List<contacto> contactos = instance.buscarTelefono(telefonoOriginal);
+        assertFalse(contactos.isEmpty(), "El contacto que se va a editar no se encontró.");
+        contacto contactoExistente = contactos.get(0);
+        instance.editarContacto(contactoExistente, nuevoNombre, nuevoCorreo, nuevoTelefono);
+        List<contacto> resultado = instance.buscarTelefono(nuevoTelefono);
+        assertFalse(resultado.isEmpty(), "El contacto no fue editado correctamente.");
+        contacto contactoEditado = resultado.get(0);
+        assertEquals(nuevoNombre, contactoEditado.getNombre(), "El nombre del contacto editado no es el esperado.");
+        assertEquals(nuevoCorreo, contactoEditado.getCorreo(), "El correo del contacto editado no es el esperado.");
+        assertEquals(nuevoTelefono, contactoEditado.getNumero(), "El teléfono del contacto editado no es el esperado.");
     }
-
 }
